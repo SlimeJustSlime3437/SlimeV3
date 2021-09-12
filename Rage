@@ -1,5 +1,5 @@
 -- // Dependencies
-local Aiming = loadstring(game:HttpGet("https://pastebin.com/raw/2fL7d3Y9"))()
+local Aiming = loadstring(game:HttpGet("https://pastebin.com/raw/7xN5d7GH"))()
 Aiming.TeamCheck(false)
  
 -- // Services
@@ -17,7 +17,6 @@ local DaHoodSettings = {
     SilentAim = true,
     AimLock = true,
     Prediction = 0.188,
-    AimLockKeybind = Enum.KeyCode.Q
 }
 getgenv().DaHoodSettings = DaHoodSettings
  
@@ -62,18 +61,4 @@ __index = hookmetamethod(game, "__index", function(t, k)
  
     -- // Return
     return __index(t, k)
-end)
- 
--- // Aimlock
-RunService:BindToRenderStep("AimLock", 0, function()
-    if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
-        -- // Vars
-        local SelectedPart = Aiming.SelectedPart
- 
-        -- // Hit to account prediction
-        local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
- 
-        -- // Set the camera to face towards the Hit
-        CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
-    end
 end)
